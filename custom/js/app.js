@@ -27,7 +27,11 @@ setToLocalStorage = (name, quantity) => {
     if(!products){
         products = {};
     }
-    products[name] = quantity;
+    if(products[name]){
+        products[name] = parseInt(products[name]) + parseInt(quantity)
+    }else{
+        products[name] = quantity;
+    }
     const stringified = JSON.stringify(products);
     localStorage.setItem('all_products', stringified);
 }
